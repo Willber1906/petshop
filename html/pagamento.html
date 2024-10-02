@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Pagamento - Pet Snuggle</title>
+    <link rel="stylesheet" href="../css/pagamento.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <a href="../petshop.html"><img src="../assets/img/nome.petshop.jpeg" alt="logo"></a>
+            </div>
+        </header>
+
+        <main>
+            <div class="conteudo">
+                <h1>Finalizar Compra</h1>
+                
+                <h2>Escolha o Método de Pagamento</h2>
+                <form id="payment-form">
+
+                    <label>
+                        <input type="radio" name="metodo" value="pix" checked>
+                        Pix
+                    </label><br>
+                    <label>
+                        <input type="radio" name="metodo" value="cartao" checked>
+                        Cartão de Crédito
+                    </label><br>
+                    <label>
+                        <input type="radio" name="metodo" value="paypal">
+                        PayPal
+                    </label><br>
+                    <label>
+                        <input type="radio" name="metodo" value="boleto">
+                        Boleto Bancário
+                    </label><br>
+                    <button type="submit">Finalizar Pagamento</button>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const metodo = document.querySelector('input[name="metodo"]:checked').value;
+            alert('Pagamento realizado com sucesso usando: ' + metodo);
+            window.location.href = '../petshop.html'; 
+        });
+    </script>
+</body>
+</html>

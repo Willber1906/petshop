@@ -16,9 +16,13 @@ $(document).ready(function(){
 
 //script contato
 
-document.querySelector('a[href="contato.html"]').addEventListener('click', function(e) {
-    e.preventDefault(); // Previne o comportamento padrão do link
-    document.querySelector('#contato').scrollIntoView({ 
+document.querySelector('a[href="#contact-form"]').addEventListener('click', function(e) {
+    e.preventDefault(); 
+    document.querySelector('#contact-form').scrollIntoView({ 
         behavior: 'smooth' 
     });
 });
+
+//carrinho
+
+

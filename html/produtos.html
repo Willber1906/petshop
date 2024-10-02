@@ -4,51 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos - Pet Snuggle</title>
-    <link rel="stylesheet" href="produtos.css">
-
+    <link rel="stylesheet" href="../css/produtos.css">
 </head>
-<header>
-    <body>
+<body>
     <div class="container">
         <header>
             <div class="logo">
-                <a href="petshop.html"><img src="assets/img/nome.petshop.jpeg" alt="logo"></a>
+                <a href="../petshop.html"><img src="../assets/img/nome.petshop.jpeg" alt="logo"></a>
             </div>
-      
-    
-   
-</header>
+        </header>
 
-   <div class="container">
-       
         <main>
-          <div class="conteudo">
+            <div class="conteudo">
                 <h1>Nossos Produtos</h1>
                 <p>Explore a variedade de produtos de alta qualidade para o seu pet. Temos tudo o que você precisa para cuidar bem do seu amigo de quatro patas.</p>
                 
                 <div class="produtos">
                     <div class="produto">
-                        <img src="assets/img/produtos/racao.webp" alt="Produto 1">
+                        <img src="../assets/img/produtos/racao.webp" alt="Produto 1">
                         <h2>Ração Premium</h2>
                         <p>Ração nutritiva para cães e gatos de todas as idades.</p>
-                        <button>Comprar</button>
+                        <button onclick="adicionarAoCarrinho('Ração Premium')">Comprar</button>
                     </div>
                     <div class="produto">
-                        <img src="assets/img/produtos/brinquedos.webp" alt="Produto 2">
+                        <img src="../assets/img/produtos/brinquedos.webp" alt="Produto 2">
                         <h2>Brinquedo Interativo</h2>
                         <p>Brinquedo para manter seu pet entretido e ativo.</p>
-                        <button>Comprar</button>
+                        <button onclick="adicionarAoCarrinho('Brinquedo Interativo')">Comprar</button>
                     </div>
                     <div class="produto">
-                        <img src="assets/img/produtos/cama.webp" alt="Produto 3">
+                        <img src="../assets/img/produtos/cama.webp" alt="Produto 3">
                         <h2>Cama Confortável</h2>
                         <p>Cama super macia para o conforto do seu pet.</p>
-                        <button>Comprar</button>
+                        <button onclick="adicionarAoCarrinho('Cama Confortável')">Comprar</button>
                     </div>
                 </div>
             </div>
         </main>
-    </div>  
-    
+    </div>
+
+    <script>
+        function adicionarAoCarrinho(produto) {
+            alert('Produto adicionado ao carrinho: ' + produto);
+            window.location.href = 'carrinho.html?produto=' + encodeURIComponent(produto);
+
+            
+
+            
+        }
+    </script>
 </body>
 </html>
+
+
