@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtos - Pet Snuggle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/produtos.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <a href="../petshop.html"><img src="../assets/img/nome.petshop.jpeg" alt="logo"></a>
+            </div>
+        </header>
+
+        <main>
+            <div class="conteudo">
+                <h1>Nossos Produtos</h1>
+                <p>Explore a variedade de produtos de alta qualidade para o seu pet. Temos tudo o que você precisa para cuidar bem do seu amigo de quatro patas.</p>
+                
+                <div id="produtos" class="produtos">
+             
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="carrinhobox">
+        <div class="conteudocarrinho">
+            <h3>Seus Produtos</h3>
+            <div id="produtoscarrinho">
+
+                <div class="item-prod">
+                    <div class="thumb"><img src="" alt=""></div>
+                    <div class="info">
+                        <p></p>
+                    </div>
+                    <div class="price"></div>
+                </div>
+
+            </div>
+            <p id="totalgeral"></p>
+            <div id="exibircarrinho" class="header"><p><span id="count_prod">0</span><i class="fa-solid fa-cart-shopping"></i></p></div>
+        </div>
+            <button class= "finalizar">Finalizar Compra</button>
+    </div>
+
+
+    <script src="../js/produtos.js"></script>
+    <script>
+        function adicionarAoCarrinho(produto) {
+            alert('Produto adicionado ao carrinho: ' + produto);
+            window.location.href = 'carrinho.html?produto=' + encodeURIComponent(produto);
+
+        }
+    </script>
+</body>
+</html>

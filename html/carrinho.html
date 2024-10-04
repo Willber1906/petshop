@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho - Pet Snuggle</title>
+    <link rel="stylesheet" href="../css/carrinho.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <a href="../petshop.html"><img src="../assets/img/nome.petshop.jpeg" alt="logo"></a>
+            </div>
+        </header>
+
+        <main>
+            <div class="conteudo">
+                <h1>Carrinho de Compras</h1>
+
+                <div id="produtos-carrinho"></div>
+
+                <p id="total-geral"></p>
+
+                <button onclick="finalizarCompra()">Finalizar Compra</button>
+                <button onclick="continuarComprando()">Continuar Comprando</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Preços dos produtos
+        const precos = {
+            'Ração Premium': 150.00,
+            'Brinquedo Interativo': 75.00,
+            'Cama Confortável': 120.00
+        };
+
+       
+        function getProdutosCarrinho() {
+            const params = new URLSearchParams(window.location.search);
+            const produtos = params.getAll('produto');
+            return produtos.map(produto => ({
+                nome: produto,
+                quantidade: 1 
+            }));
+        }
+
+        
+        function renderizarCarrinho() {
+            const produtos = getProdutosCarrinho();
+            const produtosCarrinhoDiv = document.getElementById('produtos-carrinho');
+            let totalGeral = 0;
+
+            produtosCarrinhoDiv.innerHTML = ''; 
+
+            produtos.forEach(produto => {
+                const preco = precos[produto.nome] || 0;
+                const totalProduto = preco * produto.quantidade;
+                totalGeral += totalProduto;
+
+                produtosCarrinhoDiv.innerHTML += `
+                    <div class="produto">
+                        <h2>${produto.nome}</h2>
+                        <label for="quantidade-${produto.nome}">Quantidade:</label>
+                        <input type="number" id="quantidade-${produto.nome}" name="quantidade" min="1" value="${produto.quantidade}" onchange="atualizarTotal()">
+                        <p>Preço: R$ ${preco.toFixed(2)}</p>
+                        <p>Total: R$ ${totalProduto.toFixed(2)}</p>
+                    </div>
+                `;
+            });
+
+            document.getElementById('total-geral').innerText = 'Total Geral: R$ ' + totalGeral.toFixed(2);
+        }
+
+        function atualizarTotal() {
+            const produtos = getProdutosCarrinho();
+            let totalGeral = 0;
+
+            produtos.forEach(produto => {
+                const quantidade = parseInt(document.getElementById(`quantidade-${produto.nome}`).value);
+                const preco = precos[produto.nome] || 0;
+                totalGeral += preco * quantidade;
+            });
+
+            document.getElementById('total-geral').innerText = 'Total Geral: R$ ' + totalGeral.toFixed(2);
+        }
+
+        function finalizarCompra() {
+            window.location.href = 'pagamento.html'; 
+        }
+
+        function continuarComprando() {
+            window.location.href = 'produtos.html'; 
+        }
+
+        
+        renderizarCarrinho();
+    </script>
+</body>
+</html>
