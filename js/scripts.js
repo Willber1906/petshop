@@ -22,3 +22,4 @@ document.querySelector('a[href="#contact-form"]').addEventListener('click', func
         behavior: 'smooth' 
     });
 });
+//carrinho

@@ -61,7 +61,7 @@ h1 {
 
 p {
     font-size: 1.2em;
-    
+    color: #555;
 }
 
 
@@ -344,4 +344,3 @@ footer button:hover {
     border: none;
     justify-content: center;
 }
-
