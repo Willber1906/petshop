@@ -12,7 +12,6 @@
         <input type="text" placeholder="Login" id="login" required>
         <input type="password" placeholder="Senha" id="senha" required>
         <button type="submit">Entrar</button>
-        <a href="cadastro.html" class="cadastrar">Cadastrar-se</a> <!-- Novo link para Cadastrar -->
         <a href="cadastro.html" class="cadastrar">Cadastrar-se</a> 
         
     </form>
@@ -30,7 +29,7 @@
 
             if(login === 'admin' && senha === 'admin') {
                 alert('Login efetuado com sucesso!');
-                window.location.href = '../petshop.html';
+                window.location.href = '../index.html';
             } else {
                 alert('Login ou senha inválidos');
             }
