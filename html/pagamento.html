@@ -16,6 +16,9 @@
 
         <main>
             <div class="conteudo">
+                <h1>Detalhes do Pagamento</h1>
+                <div class="box-payment" id="carrinhobox">
+                </div>
                 <h1>Finalizar Compra</h1>
                 
                 <h2>Escolha o Método de Pagamento</h2>
@@ -42,12 +45,15 @@
             </div>
         </main>
     </div>
-
+    <script src="../js/listProds.js"></script>
+    <script src="../js/checkout.js"></script>
+  
     <script>
         document.getElementById('payment-form').addEventListener('submit', function(event) {
             event.preventDefault();
             const metodo = document.querySelector('input[name="metodo"]:checked').value;
             alert('Pagamento realizado com sucesso usando: ' + metodo);
+            localStorage.removeItem('carrinho');
             window.location.href = '../petshop.html'; 
         });
     </script>

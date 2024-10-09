@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos - Pet Snuggle</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link rel="stylesheet" href="../css/produtos.css">
 </head>
 <body>
@@ -19,6 +20,34 @@
                 <h1>Nossos Produtos</h1>
                 <p>Explore a variedade de produtos de alta qualidade para o seu pet. Temos tudo o que você precisa para cuidar bem do seu amigo de quatro patas.</p>
                 
+                <div id="produtos" class="produtos">
+             
+                </div>
+            </div>
+        </main>
+    </div>
+    <div id="carrinhobox">
+        <div class="conteudocarrinho">
+            <h3>Seu Carrinho</h3>
+            <div id="produtoscarrinho">
+
+                <div class="item-prod">
+                    <div class="thumb"><img src="" alt=""></div>
+                    <div class="info">
+                        <p></p>
+                    </div>
+                    <div class="price"></div>
+                </div>
+                
+            </div>
+            <div class="total-cart">Total: <span id="totalGeral">R$0,00</span></div>
+            <div id="exibircarrinho" class="header"><p><span id="count_prod">0</span><i class="fa-solid fa-cart-shopping"></i></p></div>
+        </div>
+            <button class= "finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
+    </div>
+
+    <script src="../js/listProds.js"></script>
+    <script src="../js/produtos.js"></script>
                 <div class="produtos">
                     <div class="produto">
                         <img src="../assets/img/produtos/racao.webp" alt="Produto 1">
@@ -42,18 +71,18 @@
             </div>
         </main>
     </div>
-
     <script>
         function adicionarAoCarrinho(produto) {
             alert('Produto adicionado ao carrinho: ' + produto);
             window.location.href = 'carrinho.html?produto=' + encodeURIComponent(produto);
-
-            
-
-            
+        }
+        function finalizarCompra(){
+            if(!carrinho.length){
+                alert("Seu carrinho esta vazio")
+                return
+            }
+            window.location.href = 'pagamento.html'
         }
     </script>
 </body>
 </html>
-
-
