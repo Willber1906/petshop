@@ -1,36 +1,14 @@
 let carrinho = JSON.parse(localStorage.getItem('carrinho')) || [];
-const carrinhobox = document.getElementById('carrinhobox');
-
-carrinhobox.style.top = `-${carrinhobox.clientHeight}px`
-console.log(carrinho);
 const qtd = document.getElementsByName('quantidade');
 const boxprodutos = document.getElementById('produtos');
+const actions = document.querySelectorAll('.actions');
 
-
-let produtos = [
-    {
-        id: 1,
-        nome: 'Ração Premium',
-        preco: 100.00,
-        img: '../assets/img/produtos/racao.webp',
-        descricao: 'Ração nutritiva para cães e gatos de todas as idades.',
-    },
-    {
-        id: 2,
-        nome: 'Brinquedo Interativo',
-        preco: 70.00,
-        img: '../assets/img/produtos/brinquedos.webp',
-        descricao: 'Brinquedo para manter seu pet entretido e ativo.',
-    },
-    {
-        id: 3,
-        nome: 'Cama Super Macia',
-        preco: 150.00,
-        img: '../assets/img/produtos/cama.webp',
-        descricao: 'Cama super macia para o conforto do seu pet.',
-    },
-];
-
+function updatStyleCart() {
+    const carrinhobox = document.getElementById('carrinhobox');
+    setTimeout(() => {
+        carrinhobox.style.top = `-${carrinhobox.clientHeight}px`
+    }, 1000)
+}
 
 let conteudoprodutos = '';
 
@@ -69,7 +47,6 @@ function adicionarCarrinho(id, qtd, nome, preco) {
     //console.log(carrinho[produto])
     if(produto !== -1){
         carrinho[produto].qtd += 1;
-        console.log(carrinho)
     }
     else {
         carrinho.push({
@@ -94,23 +71,70 @@ function loadCart(){
     count_prod.innerText = carrinho.length
 
     let contentProds = ""
-    
-    carrinho.forEach(item => {
-    const itemProd = produtos.find(produto => produto.id === item.id);
-    let totalItemPrice = (itemProd.preco) * (item.qtd)
-    contentProds += `<div class="item-prod">`
-    contentProds += `<div class="qtd-cart">${item.qtd}</div>`
-    contentProds += `<div class="thumb"><img src="${itemProd.img}" alt=""></div>`
-    contentProds += `<div class="infos">`
-    contentProds += `<p>${itemProd.nome}</p>`
-    contentProds += `</div>`
-    contentProds += `<div class="price">${totalItemPrice.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</div>`
-    contentProds += `</div>`
-    })
+    if(carrinho.length){
+        carrinho.forEach(item => {
+            const itemProd = produtos.find(produto => produto.id === item.id);
+            let totalItemPrice = (itemProd.preco) * (item.qtd)
+            contentProds += `<div class="item-prod">`
+            contentProds += `<div class="qtd-cart"><span class="qtd-action" onclick="addQtd(${item.id})"><i class="fa-solid fa-arrow-up"></i></span><span>${item.qtd}</span><span class="qtd-action" onclick="removeQtd(${item.id})"><i class="fa-solid fa-arrow-down"></i></span></div>`
+            contentProds += `<div class="thumb"><img src="${itemProd.img}" alt=""></div>`
+            contentProds += `<div class="infos">`
+            contentProds += `<p>${itemProd.nome}</p>`
+            contentProds += `</div>`
+            contentProds += `<div class="price">${totalItemPrice.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})}</div>`
+            contentProds += `<div class="actions" onclick="removeItem(${item.id})"><i class="fa-solid fa-trash"></i></div>`
+            contentProds += `</div>`
+        })
+    }else{
+        contentProds += `<div class="item-prod empty-cart">Seu carrinho está vazio</div>`
+    }
     produtoscarrinho.innerHTML = contentProds;
-
-
-
+    updatStyleCart()
+    updatePrice()
 }
+
+function addQtd(id){
+    const index = carrinho.findIndex(item => item.id === id);
+    carrinho[index].qtd += 1;
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    loadCart();    
+}
+
+function removeQtd(id){
+    const index = carrinho.findIndex(item => item.id === id);
+    if(carrinho[index].qtd > 1){
+        carrinho[index].qtd -= 1;
+    }else{
+        removeItem(id)
+    }
+    localStorage.setItem('carrinho', JSON.stringify(carrinho));
+    loadCart();
+}
+function removeItem(id){
+        if(!confirm("Deseja remover este item?")) return
+        const index = carrinho.findIndex(item => item.id === id);
+        carrinho.splice(index, 1);
+        localStorage.setItem('carrinho', JSON.stringify(carrinho));
+        loadCart();
+}
+function updatePrice(){
+
+    sum = carrinho.reduce(function(accumulator,object){ 
+        let finalPrice = object.preco * object.qtd
+        return accumulator + finalPrice
+      },0); 
+      sum = sum.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+      totalGeral.innerHTML = sum;
+}
+function finalizarCompra(){
+    if(!carrinho.length){
+        alert("Seu carrinho esta vazio")
+        return
+    }
+    window.location.href = 'pagamento.html'
+}
+
+
+updatStyleCart()
 loadCart();
 

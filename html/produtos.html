@@ -28,7 +28,7 @@
     </div>
     <div id="carrinhobox">
         <div class="conteudocarrinho">
-            <h3>Seus Produtos</h3>
+            <h3>Seu Carrinho</h3>
             <div id="produtoscarrinho">
 
                 <div class="item-prod">
@@ -38,21 +38,27 @@
                     </div>
                     <div class="price"></div>
                 </div>
-
+                
             </div>
-            <p id="totalgeral"></p>
+            <div class="total-cart">Total: <span id="totalGeral">R$0,00</span></div>
             <div id="exibircarrinho" class="header"><p><span id="count_prod">0</span><i class="fa-solid fa-cart-shopping"></i></p></div>
         </div>
-            <button class= "finalizar">Finalizar Compra</button>
+            <button class= "finalizar" onclick="finalizarCompra()">Finalizar Compra</button>
     </div>
 
-
+    <script src="../js/listProds.js"></script>
     <script src="../js/produtos.js"></script>
     <script>
         function adicionarAoCarrinho(produto) {
             alert('Produto adicionado ao carrinho: ' + produto);
             window.location.href = 'carrinho.html?produto=' + encodeURIComponent(produto);
-
+        }
+        function finalizarCompra(){
+            if(!carrinho.length){
+                alert("Seu carrinho esta vazio")
+                return
+            }
+            window.location.href = 'pagamento.html'
         }
     </script>
 </body>
